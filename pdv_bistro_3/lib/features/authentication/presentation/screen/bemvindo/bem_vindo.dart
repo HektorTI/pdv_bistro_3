@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:pdv_bistro2/Theme/color_schemes.dart';
 import 'package:pdv_bistro2/features/authentication/presentation/screen/esqueceu%20senha/tela_esqueceu_senha.dart';
 import 'package:pdv_bistro2/core/widgets/custom_app_bar.dart';
-import 'package:pdv_bistro2/features/authentication/presentation/screen/operador/tela_operador.dart';
+import 'package:pdv_bistro2/features/authentication/presentation/screen/seletor/tela_selecionar.dart';
 import 'package:pdv_bistro2/features/authentication/presentation/screen/registrar/tela_registrar.dart';
 
 class BemVindo extends StatefulWidget {
@@ -107,7 +107,7 @@ class _BemVindoState extends State<BemVindo> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const TelaOperador(),
+                            builder: (context) => const TelaSelecionar(),
                           ),
                         );
                       },

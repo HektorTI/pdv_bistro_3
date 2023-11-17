@@ -4,14 +4,14 @@ import 'package:pdv_bistro2/core/widgets/custom_app_bar.dart';
 import 'package:pdv_bistro2/features/authentication/presentation/screen/aplicativo/tela_aplicativo.dart';
 import 'package:pdv_bistro2/features/authentication/presentation/screen/bemvindo/bem_vindo.dart';
 
-class TelaOperador extends StatefulWidget {
-  const TelaOperador({Key? key}) : super(key: key);
+class TelaSelecionar extends StatefulWidget {
+  const TelaSelecionar({Key? key}) : super(key: key);
 
   @override
-  State<TelaOperador> createState() => _TelaOperadorState();
+  State<TelaSelecionar> createState() => _TelaSelecionarState();
 }
 
-class _TelaOperadorState extends State<TelaOperador> {
+class _TelaSelecionarState extends State<TelaSelecionar> {
   bool _obscureText = true;
   String _password = '';
   String? _selectedOperation;
@@ -49,58 +49,77 @@ class _TelaOperadorState extends State<TelaOperador> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  Card(
-                    elevation: 4,
-                    child: Column(
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6.0), // Borda arredondada
+                      border: Border.all(width: 1.0, color: const Color.fromARGB(255, 58, 57, 57)), // Borda mais escura
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          children: [
-                            Expanded(
-                              child: ListTile(
-                                title: Text(_selectedOperation ?? 'Escolha sua operação'),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              ListTile(
+                                title: Text(_selectedOperation ?? 'Selecionar:'),
                                 onTap: () {
                                   setState(() {
                                     _isExpanded = !_isExpanded;
                                   });
                                 },
                               ),
-                            ),
-                            Expanded(
+                              if (_isExpanded)
+                                Column(
+                                  children: [
+                                    ListTile(
+                                      title: const Text('Supervisor'),
+                                      onTap: () => _selectOperation('Supervisor'),
+                                    ),
+                                    ListTile(
+                                      title: const Text('Atendente'),
+                                      onTap: () => _selectOperation('Atendente'),
+                                    ),
+                                    ListTile(
+                                      title: const Text('Garçom'),
+                                      onTap: () => _selectOperation('Garçom'),
+                                    ),
+                                    ListTile(
+                                      title: const Text('Administrador'),
+                                      onTap: () => _selectOperation('Administrador'),
+                                    ),
+                                  ],
+                                ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(width: 20), // Espaçamento entre os campos
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0), // Espaçamento para mover o texto para baixo
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8.0), // Borda arredondada
+                                // border: Border.all(width: 1.0, color: const Color.fromARGB(255, 58, 57, 57)), // Borda mais escura
+                              ),
                               child: TextFormField(
-                                style: Theme.of(context).textTheme.titleLarge,
+                                // style: Theme.of(context).textTheme.headlineLarge,
                                 readOnly: true,
                                 controller: TextEditingController(text: _password),
                                 decoration: InputDecoration(
+                                  contentPadding: const EdgeInsets.symmetric(vertical: 6.0), // Espaçamento interno do texto
                                   labelText: 'Senha',
-                                  border: const OutlineInputBorder(),
+                                  labelStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+
+                                  border: InputBorder.none, // Remove a borda padrão do TextFormField
                                   suffixIcon: buildVisibilityIcon(),
                                 ),
                                 obscureText: _obscureText,
                               ),
                             ),
-                          ],
-                        ),
-                        if (_isExpanded)
-                          Column(
-                            children: [
-                              ListTile(
-                                title: const Text('Supervisor'),
-                                onTap: () => _selectOperation('Supervisor'),
-                              ),
-                              ListTile(
-                                title: const Text('Atendente'),
-                                onTap: () => _selectOperation('Atendente'),
-                              ),
-                              ListTile(
-                                title: const Text('Garçom'),
-                                onTap: () => _selectOperation('Garçom'),
-                              ),
-                              ListTile(
-                                title: const Text('Administrador'),
-                                onTap: () => _selectOperation('Administrador'),
-                              ),
-                            ],
                           ),
+                        ),
+                        const SizedBox(height: 49),
                       ],
                     ),
                   ),
@@ -128,10 +147,11 @@ class _TelaOperadorState extends State<TelaOperador> {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 SizedBox(
-                                  width: 112, // Defina o tamanho desejado aqui
+                                  width: 120,
+                                  height: 100, // Defina o tamanho desejado aqui
                                   child: buildSpecialButton('Voltar'),
                                 ),
-                                const SizedBox(width: 10.0),
+                                const SizedBox(width: 12.0),
                                 Expanded(
                                   flex: 2,
                                   child: buildSpecialButton('Enter'),
@@ -145,7 +165,7 @@ class _TelaOperadorState extends State<TelaOperador> {
                   ),
                   const SizedBox(height: 15),
                   Padding(
-                    padding: const EdgeInsets.only(right: 2.5),
+                    padding: const EdgeInsets.all(8),
                     child: SizedBox(
                       width: double.infinity,
                       child: Row(
@@ -155,21 +175,33 @@ class _TelaOperadorState extends State<TelaOperador> {
                             children: [
                               Column(
                                 children: [
-                                  const SizedBox(height: 10), // Espaçamento entre o ícone e o texto
+                                  // const SizedBox(height: 10), // Espaçamento entre o ícone e o texto
 
-                                  GestureDetector(
-                                    onTap: () {
-                                      // Adicione a ação desejada ao ícone do usuário aqui
-                                    },
-                                    child: const Icon(Icons.person),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        // Adicione a ação desejada ao ícone do usuário aqui
+                                      },
+                                      child: const Icon(Icons.person_add_alt_sharp, color: Color.fromARGB(255, 151, 37, 37)), // Altere a cor conforme necessário
+                                    ),
                                   ),
                                   // const SizedBox(height: 30), // Espaçamento entre o ícone e o texto
-                                  const Text(
-                                    'Gerar Licença',
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      color: Colors.blue, // Escolha a cor desejada
-                                      decoration: TextDecoration.underline,
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(context, MaterialPageRoute(builder: (context) => const TelaAplicativo()));
+                                    },
+                                    child: const MouseRegion(
+                                      cursor: SystemMouseCursors.click,
+                                      child: Text(
+                                        'Gerar Licença',
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.blue,
+                                          // Escolha a cor desejada
+                                          // decoration: TextDecoration.underline,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -237,15 +269,44 @@ class _TelaOperadorState extends State<TelaOperador> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  const Padding(
-                    padding: EdgeInsets.only(right: 2.5),
+                  const SizedBox(height: 15),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10),
                     child: SizedBox(
                       width: double.infinity,
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween, // Alinha à esquerda e à direita
                         children: [
-                          Column(
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Icon(Icons.live_help_outlined, color: Colors.grey, size: 16), // Ícone
+                              const SizedBox(width: 8), // Espaçamento entre o ícone e o texto
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(context, MaterialPageRoute(builder: (context) => const TelaAplicativo()));
+                                    },
+                                    child: const MouseRegion(
+                                      cursor: SystemMouseCursors.click,
+                                      child: Text(
+                                        'Precisa de ajuda?',
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          color: Colors.red,
+                                          // Escolha a cor desejada
+                                          // decoration: TextDecoration.underline,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          const Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Text(

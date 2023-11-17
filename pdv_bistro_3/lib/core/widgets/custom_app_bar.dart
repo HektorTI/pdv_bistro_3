@@ -1,8 +1,9 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+// import 'package:pdv_bistro2/Theme/themes.dart';
 import 'package:pdv_bistro2/features/authentication/presentation/controller/api_controller.dart';
-import 'package:pdv_bistro2/features/authentication/presentation/screen/ajuda/tela_ajuda.dart';
+import 'package:pdv_bistro2/features/authentication/presentation/screen/aplicativo/tela_aplicativo.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   const CustomAppBar({Key? key}) : super(key: key);
@@ -16,6 +17,7 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
 
 class _CustomAppBarState extends State<CustomAppBar> {
   String dateText = 'Carregando...';
+  bool isDarkMode = false;
 
   final CustomAppBarController _controller = CustomAppBarController();
 
@@ -51,11 +53,13 @@ class _CustomAppBarState extends State<CustomAppBar> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Software Bistrô',
-                  style: TextStyle(
-                    fontSize: 24,
-                    // color: ColorSchemes.darkColorScheme.onSurface,
-                  )),
+              const Text(
+                'Software Bistrô',
+                style: TextStyle(
+                  fontSize: 24,
+                  // color: ColorSchemes.darkColorScheme.onSurface,
+                ),
+              ),
               Text(
                 dateText,
                 style: const TextStyle(
@@ -71,15 +75,31 @@ class _CustomAppBarState extends State<CustomAppBar> {
         Padding(
           padding: const EdgeInsets.only(right: 10),
           child: IconButton(
+            icon: isDarkMode ? const Icon(Icons.light_mode) : const Icon(Icons.dark_mode),
+            onPressed: () {
+              setState(() {
+                isDarkMode = !isDarkMode;
+                // Aqui você pode alternar o tema entre claro e escuro
+                // Implemente a lógica para alternar o tema do aplicativo
+                // por exemplo, usando ThemeData.dark() e ThemeData.light()
+                // para o tema escuro e claro, respectivamente.
+                // Theme.of(context).setTheme(isDarkMode ? darkTheme : lightTheme);
+              });
+            },
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(right: 10),
+          child: IconButton(
             icon: const Icon(
-              Icons.live_help,
+              Icons.settings,
               // color: ColorSchemes.darkColorScheme.onSurface,
             ),
             onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const TelaAjuda(),
+                  builder: (context) => const TelaAplicativo(),
                 ),
               );
             },
