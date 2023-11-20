@@ -1,11 +1,11 @@
 // ignore_for_file: file_names
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:pdv_bistro2/Theme/color_schemes.dart';
-import 'package:pdv_bistro2/features/authentication/presentation/screen/esqueceu%20senha/tela_esqueceu_senha.dart';
-import 'package:pdv_bistro2/core/widgets/custom_app_bar.dart';
-import 'package:pdv_bistro2/features/authentication/presentation/screen/seletor/tela_selecionar.dart';
-import 'package:pdv_bistro2/features/authentication/presentation/screen/registrar/tela_registrar.dart';
+import 'package:pdv_bistro_3/Theme/color_schemes.dart';
+import 'package:pdv_bistro_3/core/widgets/custom_app_bar.dart';
+import 'package:pdv_bistro_3/features/authentication/presentation/screen/esqueceu%20senha/tela_esqueceu_senha.dart';
+import 'package:pdv_bistro_3/features/authentication/presentation/screen/registrar/tela_registrar.dart';
+import 'package:pdv_bistro_3/features/authentication/presentation/screen/seletor/tela_selecionar.dart';
 
 class BemVindo extends StatefulWidget {
   const BemVindo({Key? key}) : super(key: key);

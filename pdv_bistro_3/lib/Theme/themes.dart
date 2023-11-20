@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pdv_bistro2/Theme/color_schemes.dart';
+import 'package:pdv_bistro_3/Theme/color_schemes.dart';
 // import 'package:pdv_bistro2/Theme/custom_color_scheme.dart';
 
 // *LIGHT THEME GLOBAL

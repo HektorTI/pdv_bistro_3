@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pdv_bistro2/Theme/color_schemes.dart';
-import 'package:pdv_bistro2/core/widgets/custom_app_bar.dart';
-import 'package:pdv_bistro2/features/authentication/presentation/screen/aplicativo/tela_aplicativo.dart';
-import 'package:pdv_bistro2/features/authentication/presentation/screen/bemvindo/bem_vindo.dart';
+import 'package:pdv_bistro_3/Theme/color_schemes.dart';
+import 'package:pdv_bistro_3/core/widgets/custom_app_bar.dart';
+import 'package:pdv_bistro_3/features/authentication/presentation/screen/aplicativo/tela_aplicativo.dart';
+import 'package:pdv_bistro_3/features/authentication/presentation/screen/bemvindo/bem_vindo.dart';
 
 class TelaSelecionar extends StatefulWidget {
   const TelaSelecionar({Key? key}) : super(key: key);
@@ -41,8 +41,8 @@ class _TelaSelecionarState extends State<TelaSelecionar> {
       appBar: const CustomAppBar(),
       body: Center(
         child: SizedBox(
-          width: 420,
-          height: 750,
+          width: 400,
+          height: 720,
           child: Card(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
@@ -178,7 +178,7 @@ class _TelaSelecionarState extends State<TelaSelecionar> {
                                   // const SizedBox(height: 10), // Espaçamento entre o ícone e o texto
 
                                   Padding(
-                                    padding: const EdgeInsets.all(8.0),
+                                    padding: const EdgeInsets.only(right: 5),
                                     child: GestureDetector(
                                       onTap: () {
                                         // Adicione a ação desejada ao ícone do usuário aqui
@@ -186,20 +186,20 @@ class _TelaSelecionarState extends State<TelaSelecionar> {
                                       child: const Icon(Icons.person_add_alt_sharp, color: Color.fromARGB(255, 151, 37, 37)), // Altere a cor conforme necessário
                                     ),
                                   ),
-                                  // const SizedBox(height: 30), // Espaçamento entre o ícone e o texto
                                   GestureDetector(
                                     onTap: () {
                                       Navigator.push(context, MaterialPageRoute(builder: (context) => const TelaAplicativo()));
                                     },
-                                    child: const MouseRegion(
-                                      cursor: SystemMouseCursors.click,
-                                      child: Text(
-                                        'Gerar Licença',
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          color: Colors.blue,
-                                          // Escolha a cor desejada
-                                          // decoration: TextDecoration.underline,
+                                    child: const Padding(
+                                      padding: EdgeInsets.only(right: 10),
+                                      child: MouseRegion(
+                                        cursor: SystemMouseCursors.click,
+                                        child: Text(
+                                          'Gerar Licença',
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            color: Colors.blue,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -271,40 +271,40 @@ class _TelaSelecionarState extends State<TelaSelecionar> {
                   ),
                   const SizedBox(height: 15),
                   Padding(
-                    padding: const EdgeInsets.only(right: 10),
+                    padding: const EdgeInsets.only(right: 0),
                     child: SizedBox(
                       width: double.infinity,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween, // Alinha à esquerda e à direita
                         children: [
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Icon(Icons.live_help_outlined, color: Colors.grey, size: 16), // Ícone
-                              const SizedBox(width: 8), // Espaçamento entre o ícone e o texto
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  GestureDetector(
-                                    onTap: () {
-                                      Navigator.push(context, MaterialPageRoute(builder: (context) => const TelaAplicativo()));
-                                    },
-                                    child: const MouseRegion(
-                                      cursor: SystemMouseCursors.click,
-                                      child: Text(
-                                        'Precisa de ajuda?',
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          color: Colors.red,
-                                          // Escolha a cor desejada
-                                          // decoration: TextDecoration.underline,
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20, top: 25),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                const Icon(Icons.live_help_outlined, color: Colors.grey, size: 16), // Ícone
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(context, MaterialPageRoute(builder: (context) => const TelaAplicativo()));
+                                      },
+                                      child: const MouseRegion(
+                                        cursor: SystemMouseCursors.click,
+                                        child: Text(
+                                          'Ajuda?',
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            color: Colors.red,
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                           const Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
@@ -393,14 +393,13 @@ class _TelaSelecionarState extends State<TelaSelecionar> {
           alignment: Alignment.center,
           child: label == 'Enter'
               ? Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const SizedBox(width: 56),
-                    SizedBox(
-                      width: 100,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 100),
                       child: Text(
                         label,
-                        textAlign: TextAlign.center,
+                        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                     ),
                   ],

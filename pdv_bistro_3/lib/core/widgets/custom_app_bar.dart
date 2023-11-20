@@ -1,9 +1,8 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
-// import 'package:pdv_bistro2/Theme/themes.dart';
-import 'package:pdv_bistro2/features/authentication/presentation/controller/api_controller.dart';
-import 'package:pdv_bistro2/features/authentication/presentation/screen/aplicativo/tela_aplicativo.dart';
+import 'package:pdv_bistro_3/features/authentication/presentation/controller/api_controller.dart';
+import 'package:pdv_bistro_3/features/authentication/presentation/screen/aplicativo/tela_aplicativo.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   const CustomAppBar({Key? key}) : super(key: key);

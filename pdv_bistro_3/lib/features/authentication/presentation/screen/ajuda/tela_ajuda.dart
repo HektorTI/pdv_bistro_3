@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:pdv_bistro2/core/widgets/custom_app_bar.dart';
-import 'package:pdv_bistro2/features/authentication/presentation/screen/registrar/tela_registrar.dart';
+import 'package:pdv_bistro_3/core/widgets/custom_app_bar.dart';
+import 'package:pdv_bistro_3/features/authentication/presentation/screen/registrar/tela_registrar.dart';
 
 class TelaAjuda extends StatelessWidget {
   const TelaAjuda({Key? key}) : super(key: key);
