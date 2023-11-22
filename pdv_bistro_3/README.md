@@ -1,4 +1,4 @@
-# pdv_bistro2
+# pdv_bistro 3.0
 
 A new Flutter project.
 
