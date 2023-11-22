@@ -5,7 +5,7 @@ import 'package:pdv_bistro_3/features/authentication/presentation/screen/aplicat
 import 'package:pdv_bistro_3/features/authentication/presentation/screen/bemvindo/bem_vindo.dart';
 
 class TelaSelecionar extends StatefulWidget {
-  const TelaSelecionar({Key? key}) : super(key: key);
+  const TelaSelecionar({super.key});
 
   @override
   State<TelaSelecionar> createState() => _TelaSelecionarState();
@@ -15,14 +15,6 @@ class _TelaSelecionarState extends State<TelaSelecionar> {
   bool _obscureText = true;
   String _password = '';
   String? _selectedOperation;
-  bool _isExpanded = false;
-
-  void _selectOperation(String selected) {
-    setState(() {
-      _selectedOperation = selected;
-      _isExpanded = !_isExpanded;
-    });
-  }
 
   IconButton buildVisibilityIcon() {
     return IconButton(
@@ -34,6 +26,8 @@ class _TelaSelecionarState extends State<TelaSelecionar> {
       },
     );
   }
+
+  List<String> listaUsuario = ["Garçom", "Supervisor", "Atendende", "Administrador"];
 
   @override
   Widget build(BuildContext context) {
@@ -49,79 +43,103 @@ class _TelaSelecionarState extends State<TelaSelecionar> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(6.0), // Borda arredondada
-                      border: Border.all(width: 1.0, color: const Color.fromARGB(255, 58, 57, 57)), // Borda mais escura
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              ListTile(
-                                title: Text(_selectedOperation ?? 'Selecionar:'),
-                                onTap: () {
-                                  setState(() {
-                                    _isExpanded = !_isExpanded;
-                                  });
-                                },
+                  Row(
+                    children: [
+                      Expanded(
+                        child: SizedBox(
+                          height: 50,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(6.0),
+                              border: Border.all(
+                                width: 1.0,
+                                color: ColorSchemes.darkColorScheme.surfaceVariant,
                               ),
-                              if (_isExpanded)
-                                Column(
-                                  children: [
-                                    ListTile(
-                                      title: const Text('Supervisor'),
-                                      onTap: () => _selectOperation('Supervisor'),
-                                    ),
-                                    ListTile(
-                                      title: const Text('Atendente'),
-                                      onTap: () => _selectOperation('Atendente'),
-                                    ),
-                                    ListTile(
-                                      title: const Text('Garçom'),
-                                      onTap: () => _selectOperation('Garçom'),
-                                    ),
-                                    ListTile(
-                                      title: const Text('Administrador'),
-                                      onTap: () => _selectOperation('Administrador'),
-                                    ),
-                                  ],
+                            ),
+                            child: DropdownButtonFormField<String>(
+                              decoration: InputDecoration(
+                                contentPadding: const EdgeInsets.symmetric(horizontal: 11.0),
+                                border: InputBorder.none,
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(6.0),
+                                  borderSide: BorderSide(
+                                    color: ColorSchemes.darkColorScheme.surfaceVariant,
+                                    width: 1.0,
+                                  ),
                                 ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(width: 20), // Espaçamento entre os campos
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0), // Espaçamento para mover o texto para baixo
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8.0), // Borda arredondada
-                                // border: Border.all(width: 1.0, color: const Color.fromARGB(255, 58, 57, 57)), // Borda mais escura
-                              ),
-                              child: TextFormField(
-                                // style: Theme.of(context).textTheme.headlineLarge,
-                                readOnly: true,
-                                controller: TextEditingController(text: _password),
-                                decoration: InputDecoration(
-                                  contentPadding: const EdgeInsets.symmetric(vertical: 6.0), // Espaçamento interno do texto
-                                  labelText: 'Senha',
-                                  labelStyle: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-
-                                  border: InputBorder.none, // Remove a borda padrão do TextFormField
-                                  suffixIcon: buildVisibilityIcon(),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(6.0),
+                                  borderSide: BorderSide(
+                                    color: ColorSchemes.darkColorScheme.surfaceVariant,
+                                    width: 1.0,
+                                  ),
                                 ),
-                                obscureText: _obscureText,
                               ),
+                              style: Theme.of(context).textTheme.headlineMedium,
+                              value: _selectedOperation,
+                              items: listaUsuario.map((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(
+                                    value,
+                                    style: const TextStyle(fontSize: 14),
+                                  ),
+                                );
+                              }).toList(),
+                              onChanged: (newValue) {
+                                setState(() {
+                                  _selectedOperation = newValue;
+                                });
+                              },
                             ),
                           ),
                         ),
-                        const SizedBox(height: 49),
-                      ],
-                    ),
+                      ),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: SizedBox(
+                          height: 50,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(6.0),
+                              border: Border.all(
+                                width: 1.0,
+                                color: ColorSchemes.darkColorScheme.surfaceVariant,
+                              ),
+                            ),
+                            child: TextFormField(
+                              controller: TextEditingController(text: _password),
+                              decoration: InputDecoration(
+                                labelText: 'Senha',
+                                suffixIcon: buildVisibilityIcon(),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(6.0),
+                                  borderSide: BorderSide(
+                                    color: ColorSchemes.darkColorScheme.surfaceVariant,
+                                    width: 1.0,
+                                  ),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(6.0),
+                                  borderSide: BorderSide(
+                                    color: ColorSchemes.darkColorScheme.surfaceVariant,
+                                    width: 1.0,
+                                  ),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(6.0),
+                                  borderSide: BorderSide(
+                                    color: ColorSchemes.darkColorScheme.surfaceVariant,
+                                    width: 1.0,
+                                  ),
+                                ),
+                              ),
+                              obscureText: _obscureText,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                   const SizedBox(height: 10),
                   Expanded(
@@ -148,7 +166,7 @@ class _TelaSelecionarState extends State<TelaSelecionar> {
                               children: [
                                 SizedBox(
                                   width: 120,
-                                  height: 100, // Defina o tamanho desejado aqui
+                                  height: 100,
                                   child: buildSpecialButton('Voltar'),
                                 ),
                                 const SizedBox(width: 12.0),
@@ -393,7 +411,6 @@ class _TelaSelecionarState extends State<TelaSelecionar> {
           alignment: Alignment.center,
           child: label == 'Enter'
               ? Row(
-                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(left: 100),

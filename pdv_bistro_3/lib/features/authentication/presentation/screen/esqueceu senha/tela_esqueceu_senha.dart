@@ -6,7 +6,7 @@ import 'package:pdv_bistro_3/features/authentication/presentation/screen/aplicat
 import 'package:pdv_bistro_3/features/authentication/presentation/screen/registrar/tela_registrar.dart';
 
 class EsqueceuSenha extends StatelessWidget {
-  const EsqueceuSenha({Key? key}) : super(key: key);
+  const EsqueceuSenha({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -6,7 +6,7 @@ import 'package:pdv_bistro_3/features/authentication/presentation/screen/aplicat
 import 'package:pdv_bistro_3/features/authentication/presentation/screen/bemvindo/bem_vindo.dart';
 
 class TelaRegsitrar extends StatelessWidget {
-  const TelaRegsitrar({Key? key}) : super(key: key);
+  const TelaRegsitrar({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -5,7 +5,7 @@ import 'package:pdv_bistro_3/core/widgets/custom_bottom_navigation_bar.dart';
 import 'package:pdv_bistro_3/features/authentication/presentation/screen/registrar/tela_registrar.dart';
 
 class TelaAplicativo extends StatelessWidget {
-  const TelaAplicativo({Key? key}) : super(key: key);
+  const TelaAplicativo({super.key});
 
   @override
   Widget build(BuildContext context) {
