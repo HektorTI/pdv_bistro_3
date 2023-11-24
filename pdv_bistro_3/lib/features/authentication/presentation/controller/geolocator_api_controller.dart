@@ -21,7 +21,7 @@ class CustomAppBarController {
         final dt = data['dt'];
         final dateTime = DateTime.fromMillisecondsSinceEpoch(dt * 1000);
 
-        // Use DateFormat para formatar a data no formato desejado (8/11/2023)
+        // Use DateFormat para formatar a data no formato aqui
         final formattedDate = DateFormat('d/M/yyyy').format(dateTime);
 
         return formattedDate;
